@@ -6,7 +6,7 @@ import ConversationsModal from "./ConversationsModal.jsx";
 import ContactsModal from "./ContactsModal.jsx";
 import { useConversations } from "../contexts/ConversationsProvider.jsx";
 
-export default function MobileSidebar({ id }) {
+export default function MobileSidebar({ id,close }) {
   const [contactsModal,setContactsModal]=useState(false)
   const [conversationsModal,setConversationsModal]=useState(false)
   const {conversations}=useConversations()
@@ -17,10 +17,10 @@ export default function MobileSidebar({ id }) {
       <Button className="rounded-4 my-2" variant="dark" onClick={()=>setContactsModal(true)}>
           new Contact
         </Button>
-      <h2 className="my-2">Conversations</h2>
-      {conversations.length!=0&&<div className=" my-3">
-      <Conversations/>
-      </div>}
+      <h2 className="my-2 mt-3">Conversations</h2>
+      <div className={`${conversations.length!=0?"my-2":"my-1"}`}>
+      <Conversations close={close}/>
+      </div>
       <Button className="rounded-4 my-2" variant="dark" onClick={()=>setConversationsModal(true)}>
           new Conversation
         </Button>

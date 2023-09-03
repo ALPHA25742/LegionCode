@@ -2,9 +2,9 @@ import React from "react";
 
 export default function WelcomePage({ mobileView }) {
   return (
-    <h2
-      className="d-flex m-3 text-center align-items-center justify-content-center flex-column"
-      style={{ height: "90%", width: "90%",color:'rgb(0 0 0 / 85%)' }}
+    <h3
+      className="d-flex m-3 text-center align-items-center justify-content-center flex-column flex-grow-1"
+      style={{color:'rgb(0 0 0 / 85%)' }}
     >
       Welcome to LegionCode! <br />A real-time minimal chat space. <br />
       {mobileView && (
@@ -15,6 +15,6 @@ export default function WelcomePage({ mobileView }) {
         </span>
       )}
       We hope u enjoy ur stay here :)
-    </h2>
+    </h3>
   );
 }

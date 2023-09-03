@@ -10,6 +10,7 @@ export function SocketProvider({ id, children }) {
 
   useEffect(() => {
     const newSocket = io("https://legioncode-backend.onrender.com", { query: { id } });
+    // const newSocket = io("http://localhost:5000/", { query: { id } });
     setSocket(newSocket);
     return () => newSocket.close();//for closing the old socket when the useEffect runs for the second time so that we dont have multiple sockets and get dupilcated messages
   }, [id]);

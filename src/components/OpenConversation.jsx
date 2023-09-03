@@ -6,7 +6,6 @@ export default function OpenConversation() {
   const [text, setText] = useState("");
   const { sendMessage, selectedConversation } = useConversations();
   const Ref=useCallback(node=>node?.scrollIntoView({smooth:true}),[])
-  // console.log(selectedConversation);
   function handleSubmit(e) {
     e.preventDefault();
     sendMessage(
@@ -25,8 +24,8 @@ export default function OpenConversation() {
             return (
               <div
                 key={index}
-                className={`my-1 flex-column ${
-                  message.fromMe ? "align-self-end align-items-end" : "align-items-start"
+                className={`flex-column ${
+                  message.fromMe ? "align-self-end" : "align-items-start"
                 }`}
                 ref={lastMsg?Ref:null}
               >
@@ -39,7 +38,7 @@ export default function OpenConversation() {
                 </div>
                 <div
                   className={`text-muted small ${
-                    message.fromMe ? "text-right" : ""
+                    message.fromMe ? "text-end" : ""
                   }`}
                 >
                   {message.fromMe ? "You" : message.senderName}

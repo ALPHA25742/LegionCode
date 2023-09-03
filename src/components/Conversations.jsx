@@ -1,22 +1,31 @@
-import React from "react";
+import React,{useRef} from "react";
 import { ListGroup } from "react-bootstrap";
 import { useConversations } from "../contexts/ConversationsProvider.jsx";
 
-export default function Conversations() {
+export default function Conversations({ close }) {
   const { conversations, selectConversationIndex } = useConversations();
-  // console.log(conversations);
+  const windowWidth = useRef(window.innerWidth);
   return (
     <>
       <ListGroup variant="flush">
-        {conversations &&
+        {conversations.length == 0 ? (
+          <ListGroup.Item>U need to add conversations!</ListGroup.Item>
+        ) : (
           conversations.map((conversation, index) => (
-            <ListGroup.Item key={index} action
-            active={conversation.selected}
-            variant="secondary"
-            onClick={()=>selectConversationIndex(index)}>
+            <ListGroup.Item
+              key={index}
+              action
+              active={conversation.selected}
+              variant="secondary"
+              onClick={() => {
+                selectConversationIndex(index);
+                windowWidth.current <= 768?close(true):''
+              }}
+            >
               {conversation.receipients?.map((r) => r.name).join(", ")}
             </ListGroup.Item>
-          ))}
+          ))
+        )}
       </ListGroup>
     </>
   );
